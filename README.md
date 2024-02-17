@@ -101,7 +101,9 @@ If the project receives 0 points, resubmission for potential partial credit may,
 
 To turn in a project, you must push it to a GitHub repository named **MakeChangeProject**.  You must include a `README.md` describing how to run your program.
 
+<hr>
 
+![Alt text](1.png)
 
 <hr>
 
