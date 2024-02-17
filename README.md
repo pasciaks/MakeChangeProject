@@ -22,15 +22,10 @@
 	- Format code, keep it separated (Indented)
 	- Use of BigDecimal, and String builder
 	
-#### How to run this program.
-
--This is a .java source code, command line project.  
-
--You could open the project in an IDE and execute the main method using the IDE tools.
-
--You can compile the project (.java) file on the command line, and then execute the compiled code.
-
--The compilation and execution in the command line is subject to the proper working directory and installed JAVA Compiler and specific platform.
+#### How to run this program : This is a .java source code, command line project.  
+	-You could open the project in an IDE and execute the main method using the IDE tools.
+	-You can compile the project (.java) file on the command line, and then execute the compiled code.
+		--The compilation and execution in the command line is subject to the proper working directory and installed JAVA Compiler and specific platform.
 
 #### Compile the .java source file
 
@@ -38,21 +33,27 @@
 
 javac MakeChange.java
 
-
 ```
-### Execute the compiled program.
+#### Execute the compiled program.
 
 ```bash
 
 java MakeChange
 
-
 ```
+
+## Observation / Lesson Still To Learn
+
+- I noticed that because the Project is structured to also include a package, compiling and executing the .java file as instructed above fails while in the appropriate (/workspace/MakeChange/src/com.skilldistillery.makechange/) folder on my system.
+- I copied the .java file alone to an alternate location and removed the package declaration and was able to command line compile and execute.
+- I believe the configuration of JAVA Packages as well as their compilation will be a future lesson in our coming weeks.  I may or may not investigate the solution to this on my own and simply wait for the appropriate time for this material to be presented.
+
+
 
 ## Project requirements
 
 
-## Make Change (Cash Register)
+### Make Change (Cash Register)
 
 ### Overview
 
@@ -102,6 +103,8 @@ If the project receives 0 points, resubmission for potential partial credit may,
 To turn in a project, you must push it to a GitHub repository named **MakeChangeProject**.  You must include a `README.md` describing how to run your program.
 
 <hr>
+
+## The following screenshots represent example executions of the program and the results.
 
 ![Example usage](1.png)
 ![Example usage](2.png)
