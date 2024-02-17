@@ -22,6 +22,22 @@
 	- Format code, keep it separated (Indented)
 	- Use of BigDecimal, and String builder
 	
+#### Additional learning 
+
+#### Important notes about all the code in this Repository 
+
+	- Beyond the Homework - Additional files to help plan OOP learning ahead.
+	- I've created a separate package folder structure for possible future improvements
+		- Using previous knowledge and google searches, I'm slowly considering OOP fundamentals and how this application can be adapted for implementation along those lines.
+		- For this homework, MakeChange.java is the only relevant file.
+		- The concept of a CashRegister that accepts a future List<Purchases> and generates Change might be more towards where this project will head.
+		- I can't do it all right now, but I did want to start stubbing away code and thoughts for what I believe will be the eventual completion of an assignment like this.
+	- In addition to a possible models package, a utilities package is also created.
+		- Perhaps these utilities and models packages are ultimately how a CashRegister application will be fully structured into an OOP application.
+		- Some of the abstraction is not yet complete, and will be farmed into appropriate classes later.
+		- I envision a class called CashRegister, and Purchase, as well as a revised version of Change.
+		- The revised version of Change shall incorporate some of the ChangeFunctions as methods of itself, but much will need to be learned before all this is accomplished satisfactorily.
+	
 #### How to run this program : This is a .java source code, command line project.  
 	-You could open the project in an IDE and execute the main method using the IDE tools.
 	-You can compile the project (.java) file on the command line, and then execute the compiled code.
