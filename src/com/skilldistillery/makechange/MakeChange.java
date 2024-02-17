@@ -187,16 +187,22 @@ public class MakeChange {
 		int rangeMin = 0;
 		int rangeMax = Integer.MAX_VALUE;
 
-		double randomPrice = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
-		double randomTendered = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
-
 		for (int i = 1; i <= 3; i++) {
+			double randomPrice = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+			double randomValue = -10 + (20 - -10) * r.nextDouble();
+			double randomTendered = randomPrice + randomValue;
 			double priceTest = randomPrice;
 			double tenderedTest = randomTendered;
 			makeChange(priceTest, tenderedTest);
 		}
 
 		makeChange(0.7235, 000.720_000_6);
+
+		// Test all the possible values from 0.00 to 20.00
+		// (note, round had to be used to compare for max 20.00)
+		for (double i = 0.00; round(i, 2) <= round(20.00, 2); i += 0.01) {
+			makeChange(i, 20.00);
+		}
 
 	}
 
@@ -222,23 +228,23 @@ public class MakeChange {
 
 		doubleChange = round(doubleChange, 2);
 
-		// NOTE: The idea of entering 0 or negative amounts is not realistic
-		if (doubleAmountTendered <= 0.00) {
-			System.out.println("Invalid amount tendered!");
-			return;
-		}
-
-		// NOTE: The idea of entering 0 or negative amounts is not realistic
-		if (doublePurchasePrice <= 0.00) {
-			System.out.println("Invalid purchase price!");
-			return;
-		}
-
 		System.out.println("-----------------------------------------------------------------");
 		System.out.printf("Amount Tendered:    %30.2f\n", doubleAmountTendered);
 		System.out.printf("Purchase Price:     %30.2f\n", doublePurchasePrice);
 		System.out.println("-----------------------------------------------------------------");
 		System.out.printf("Change:             %30.2f\n\n", doubleChange);
+
+		// NOTE: The idea of entering 0 or negative amounts is not realistic
+		if (doubleAmountTendered <= 0.00) {
+			System.out.println("Invalid amount tendered! (Must be greater than 0) " + doubleAmountTendered);
+			return;
+		}
+
+		// NOTE: The idea of entering 0 or negative amounts is not realistic
+		if (doublePurchasePrice <= 0.00) {
+			System.out.println("Invalid purchase price! (Must be greater than 0) " + doublePurchasePrice);
+			return;
+		}
 
 		// User Story #3 : Display an appropriate message if the customer provided too
 		// little money or the exact amount.
