@@ -103,7 +103,11 @@ To turn in a project, you must push it to a GitHub repository named **MakeChange
 
 <hr>
 
-![Alt text](1.png)
+![Example usage](1.png)
+![Example usage](2.png)
+![Example usage](3.png)
+![Example usage](4.png)
+![Example usage](5.png)
 
 <hr>
 
