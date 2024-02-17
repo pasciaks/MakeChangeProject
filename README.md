@@ -20,6 +20,7 @@
 	- Commit early, commit often, and push!
 	- A penny saved is a penny earned!
 	- Format code, keep it separated (Indented)
+	- Use of BigDecimal, and String builder
 	
 #### How to run this program.
 

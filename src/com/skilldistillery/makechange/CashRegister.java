@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Scanner;
 
-public class MakeChange {
+public class CashRegister {
 
 	public static void main(String[] args) {
 
