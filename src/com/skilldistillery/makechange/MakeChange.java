@@ -2,6 +2,7 @@ package com.skilldistillery.makechange;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Random;
 import java.util.Scanner;
 
 public class MakeChange {
@@ -78,8 +79,11 @@ public class MakeChange {
 		 * Amount: 3.96, Tendered: 20.00, Result: 1 ten dollar bill, 1 five dollar bill,
 		 * 1 one dollar bill, 4 pennies.
 		 * 
-		 * Amount: any amount less than 20.00, Tendered: anything greater than amount:
-		 * correct denominations for correct change.
+		 * Amount: any amount less than 20.00,
+		 * 
+		 * Tendered: anything greater than amount
+		 * 
+		 * Result: correct denominations for correct change.
 		 * 
 		 */
 
@@ -104,34 +108,45 @@ public class MakeChange {
 
 		Scanner keyboard = new Scanner(System.in);
 
-		showWelcomeMessage();
+		System.out.println("------------------------------");
+		System.out.println("Welcome to the Cash Register!");
+		System.out.println("------------------------------");
 
 		try {
 
-			String purchasePrice = "";
-			String amountTendered = "";
+			double purchasePrice = 0.0;
+			double amountTendered = 0.0;
 
 			System.out.print("Enter the purchase price of the item: ");
-			purchasePrice = keyboard.nextLine();
+			purchasePrice = keyboard.nextDouble();
 
 			System.out.print("Enter the amount tendered by the customer: ");
-			amountTendered = keyboard.nextLine();
+			amountTendered = keyboard.nextDouble();
 
-			String changeGenerated = makeChange(purchasePrice, amountTendered);
-			System.out.println(changeGenerated);
+			makeChange(purchasePrice, amountTendered);
 
 		} catch (Exception e) {
 
-			System.out.println("\n\nInvalid input, or something went wrong.\n\n");
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-			System.out.println("\n\n");
+			System.out.println("\n\nInvalid input, or something went wrong.\n");
+
+			System.out.println("Possible error: " + e.getClass() + "\n");
+			System.out.println("Possible error: " + e.getMessage() + "\n");
 
 		} finally {
 
-			// testCases();
+			System.out.println("-----------------------------------------------------------------");
+			System.out.print("Would you like to run some test cases? (Y/N) ? ");
+			String runTestCases = keyboard.next();
+
+			if (runTestCases.equalsIgnoreCase("Y")) {
+				testCases();
+				extraTestCases();
+			}
 
 		}
+
+		System.out.println("-----------------------------------------------------------------");
+		System.out.println("Thank you for trying this Make Change program!");
 
 		keyboard.close();
 	}
@@ -156,140 +171,139 @@ public class MakeChange {
 		 * 
 		 */
 
-		String changeGenerated = "";
-
-		changeGenerated = makeChange(".67", ".50");
-		System.out.println(changeGenerated);
-
-		changeGenerated = makeChange(".67", "1.00");
-		System.out.println(changeGenerated);
-
-		changeGenerated = makeChange(".59", "1.00");
-		System.out.println(changeGenerated);
-
-		changeGenerated = makeChange("3.96", "20.00");
-		System.out.println(changeGenerated);
-
-		changeGenerated = makeChange(".67", ".50");
-		System.out.println(changeGenerated);
-
-		changeGenerated = makeChange("0.7235", "000.7200006");
-		System.out.println(changeGenerated);
-
-		for (int i = 1; i <= 3; i++) {
-			String randomCost = Math.random() * 20 + "";
-			String randomTendered = Math.random() * 100 + 20 + "";
-			changeGenerated = makeChange(randomCost, randomTendered);
-			System.out.println(changeGenerated);
-		}
+		makeChange(.67, .50);
+		makeChange(.67, 1.00);
+		makeChange(.59, 1.00);
+		makeChange(3.96, 20.00);
+		makeChange(19.67, 19.85);
+		makeChange(.72, .72);
 
 	}
 
-	/*
-	 * This method is used to round the double to the specified number of decimal //
-	 * Stack Overflow resource reference:
-	 * https://stackoverflow.com/questions/2808535/round-a-double-to-2-decimal-
-	 * places
-	 */
-	public static double round(double value, int places) {
-		if (places < 0) {
-			throw new IllegalArgumentException();
+	public static void extraTestCases() {
+
+		Random r = new Random();
+
+		int rangeMin = 0;
+		int rangeMax = Integer.MAX_VALUE;
+
+		double randomPrice = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+		double randomTendered = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+
+		for (int i = 1; i <= 3; i++) {
+			double priceTest = randomPrice;
+			double tenderedTest = randomTendered;
+			makeChange(priceTest, tenderedTest);
 		}
+
+		makeChange(0.7235, 000.720_000_6);
+
+	}
+
+	public static double round(double value, int places) {
+		if (places < 0)
+			throw new IllegalArgumentException();
+
 		BigDecimal bd = BigDecimal.valueOf(value);
 		bd = bd.setScale(places, RoundingMode.HALF_UP);
 		return bd.doubleValue();
 	}
 
-	public static void showWelcomeMessage() {
-		System.out.println("------------------------------");
-		System.out.println("Welcome to the Cash Register!");
-		System.out.println("------------------------------");
-	}
-
 	/*
 	 * This method is used to calculate the change and return the result as a string
 	 */
-	public static String makeChange(String price, String tendered) {
+	public static void makeChange(double doublePurchasePrice, double doubleAmountTendered) {
 
-		double doubleAmountTendered = round(Double.parseDouble(tendered), 2);
-		double doublePurchasePrice = round(Double.parseDouble(price), 2);
+		doublePurchasePrice = round(doublePurchasePrice, 2);
 
-		// NOTE: Reconsider this extra rounding, probably not necessary
-		double doubleChange = round(round((doubleAmountTendered - doublePurchasePrice), 2), 2);
+		doubleAmountTendered = round(doubleAmountTendered, 2);
 
-		System.out.println("------------------------------");
-		System.out.printf("Amount Tendered:    %10.2f\n", doubleAmountTendered);
-		System.out.printf("Purchase Price:     %10.2f\n", doublePurchasePrice);
-		System.out.println("------------------------------");
-		System.out.printf("Change:             %10.2f\n\n", doubleChange);
+		double doubleChange = (doubleAmountTendered - doublePurchasePrice);
 
-		// NOTE: The idea of entering negative amounts is not realistic
-		if (doubleAmountTendered < 0.00) {
-			return "Invalid amount tendered!";
+		doubleChange = round(doubleChange, 2);
+
+		// NOTE: The idea of entering 0 or negative amounts is not realistic
+		if (doubleAmountTendered <= 0.00) {
+			System.out.println("Invalid amount tendered!");
+			return;
 		}
 
-		// NOTE: The idea of entering negative amounts is not realistic
-		if (doublePurchasePrice < 0.00) {
-			return "Invalid purchase price!";
+		// NOTE: The idea of entering 0 or negative amounts is not realistic
+		if (doublePurchasePrice <= 0.00) {
+			System.out.println("Invalid purchase price!");
+			return;
 		}
+
+		System.out.println("-----------------------------------------------------------------");
+		System.out.printf("Amount Tendered:    %30.2f\n", doubleAmountTendered);
+		System.out.printf("Purchase Price:     %30.2f\n", doublePurchasePrice);
+		System.out.println("-----------------------------------------------------------------");
+		System.out.printf("Change:             %30.2f\n\n", doubleChange);
 
 		// User Story #3 : Display an appropriate message if the customer provided too
 		// little money or the exact amount.
 
 		if (doubleAmountTendered < doublePurchasePrice) {
-			return "Not enough money!";
+			System.out.println("Not enough money!");
+			return;
 		} else if (doubleAmountTendered == doublePurchasePrice) {
-			return "Exact amount tendered!";
+			System.out.println("Exact amount tendered!");
+			return;
 		}
 
-		int twentiesNeeded = 0;
-		int tensNeeded = 0;
-		int fivesNeeded = 0;
-		int onesNeeded = 0;
-		int quartersNeeded = 0;
-		int dimesNeeded = 0;
-		int nickelsNeeded = 0;
-		int penniesNeeded = 0;
+		displayChange(doubleChange);
 
-		while (round(doubleChange, 2) >= round(20.0, 2)) { // These additional round call might not be necessary
-			twentiesNeeded++;
-			doubleChange -= 20.0;
-		}
+	}
 
-		while (round(doubleChange, 2) >= round(10.0, 2)) {
-			tensNeeded++;
-			doubleChange -= 10.0;
-		}
+	public static void displayChange(double doubleChange) {
 
-		while (round(doubleChange, 2) >= round(5.0, 2)) {
-			fivesNeeded++;
-			doubleChange -= 5.0;
-		}
+		long changeNeeded = (long) Math.round(doubleChange * 100); // Convert to cents, to avoid floating point errors
 
-		while (round(doubleChange, 2) >= round(1.0, 2)) {
-			onesNeeded++;
-			doubleChange -= 1.0;
-		}
+		// NOTE: STRIPE uses the concept of "cents" to avoid floating point errors
 
-		while (round(doubleChange, 2) >= round(0.25, 2)) {
-			quartersNeeded++;
-			doubleChange -= 0.25;
-		}
+		long twentiesNeeded = 0;
+		long tensNeeded = 0;
+		long fivesNeeded = 0;
+		long onesNeeded = 0;
+		long quartersNeeded = 0;
+		long dimesNeeded = 0;
+		long nickelsNeeded = 0;
+		long penniesNeeded = 0;
 
-		while (round(doubleChange, 2) >= round(0.10, 2)) {
-			dimesNeeded++;
-			doubleChange -= 0.10;
-		}
+		twentiesNeeded = changeNeeded / 2000;
+		changeNeeded = changeNeeded % 2000;
 
-		while (round(doubleChange, 2) >= round(0.05, 2)) {
-			nickelsNeeded++;
-			doubleChange -= 0.05;
-		}
+		tensNeeded = changeNeeded / 1000;
+		changeNeeded = changeNeeded % 1000;
 
-		while (round(doubleChange, 2) >= round(0.01, 2)) {
-			penniesNeeded++;
-			doubleChange -= round(0.01, 2);
-		}
+		fivesNeeded = changeNeeded / 500;
+		changeNeeded = changeNeeded % 500;
+
+		onesNeeded = changeNeeded / 100;
+		changeNeeded = changeNeeded % 100;
+
+		quartersNeeded = changeNeeded / 25;
+		changeNeeded = changeNeeded % 25;
+
+		dimesNeeded = changeNeeded / 10;
+		changeNeeded = changeNeeded % 10;
+
+		nickelsNeeded = changeNeeded / 5;
+		changeNeeded = changeNeeded % 5;
+
+		penniesNeeded = changeNeeded;
+
+		displayChangeStringBuilder(twentiesNeeded, tensNeeded, fivesNeeded, onesNeeded, quartersNeeded, dimesNeeded,
+				nickelsNeeded, penniesNeeded);
+
+	}
+
+	/*
+	 * This method is used to display the change needed as a string using string
+	 * concatenation
+	 */
+	public static void displayChangeString(long twentiesNeeded, long tensNeeded, long fivesNeeded, long onesNeeded,
+			long quartersNeeded, long dimesNeeded, long nickelsNeeded, long penniesNeeded) {
 
 		String outputStringResult = "";
 
@@ -299,64 +313,70 @@ public class MakeChange {
 		// The most efficient way to build the string result would be to use a
 		// StringBuilder
 
-		// NOTE: This was the first implementation of the string result and has be
-		// re factored below.
-
 		// This code is kept here (and not - commented) for readability and to
 		// demonstrate the progress, lessons learned and the re factoring process.
 
 		if (twentiesNeeded > 0) {
 			outputStringResult += twentiesNeeded + " "
-					+ (twentiesNeeded > 1 ? "Twenty dollar bills" : "Twenty dollar bill");
+					+ (twentiesNeeded > 1 ? "twenty dollar bills" : "twenty dollar bill");
 		}
 		if (tensNeeded > 0) {
 			if (outputStringResult.length() > 0) {
 				outputStringResult += ", ";
 			}
-			outputStringResult += tensNeeded + " " + (tensNeeded > 1 ? "Ten dollar bills" : "Ten dollar bill");
+			outputStringResult += tensNeeded + " " + (tensNeeded > 1 ? "ten dollar bills" : "ten dollar bill");
 		}
 		if (fivesNeeded > 0) {
 			if (outputStringResult.length() > 0) {
 				outputStringResult += ", ";
 			}
-			outputStringResult += fivesNeeded + " " + (fivesNeeded > 1 ? "Five dollar bills" : "Five dollar bill");
+			outputStringResult += fivesNeeded + " " + (fivesNeeded > 1 ? "five dollar bills" : "five dollar bill");
 		}
 		if (onesNeeded > 0) {
 			if (outputStringResult.length() > 0) {
 				outputStringResult += ", ";
 			}
-			outputStringResult += onesNeeded + " " + (onesNeeded > 1 ? "One dollar bills" : "One dollar bill");
+			outputStringResult += onesNeeded + " " + (onesNeeded > 1 ? "one dollar bills" : "one dollar bill");
 		}
 		if (quartersNeeded > 0) {
 			if (outputStringResult.length() > 0) {
 				outputStringResult += ", ";
 			}
-			outputStringResult += quartersNeeded + " " + (quartersNeeded > 1 ? "Quarters" : "Quarter");
+			outputStringResult += quartersNeeded + " " + (quartersNeeded > 1 ? "quarters" : "quarter");
 		}
 		if (dimesNeeded > 0) {
 			if (outputStringResult.length() > 0) {
 				outputStringResult += ", ";
 			}
-			outputStringResult += dimesNeeded + " " + (dimesNeeded > 1 ? "Dimes" : "Dime");
+			outputStringResult += dimesNeeded + " " + (dimesNeeded > 1 ? "dimes" : "dime");
 		}
 		if (nickelsNeeded > 0) {
 			if (outputStringResult.length() > 0) {
 				outputStringResult += ", ";
 			}
-			outputStringResult += nickelsNeeded + " " + (nickelsNeeded > 1 ? "Nickels" : "Nickel");
+			outputStringResult += nickelsNeeded + " " + (nickelsNeeded > 1 ? "nickels" : "nickel");
 		}
 		if (penniesNeeded > 0) {
 			if (outputStringResult.length() > 0) {
 				outputStringResult += ", ";
 			}
-			outputStringResult += penniesNeeded + " " + (penniesNeeded > 1 ? "Pennies" : "Penny");
+			outputStringResult += penniesNeeded + " " + (penniesNeeded > 1 ? "pennies" : "penny");
 		}
 
 		if (outputStringResult.length() > 0) {
 			outputStringResult += ".";
 		}
 
-		// Using a string builder to build the string result is as follows:
+		System.out.println(outputStringResult);
+
+	}
+
+	/*
+	 * This method is used to display the change needed as a string using the
+	 * StringBuilder class
+	 */
+	public static void displayChangeStringBuilder(long twentiesNeeded, long tensNeeded, long fivesNeeded,
+			long onesNeeded, long quartersNeeded, long dimesNeeded, long nickelsNeeded, long penniesNeeded) {
 
 		// The StringBuilder is more efficient than the previous implementation
 
@@ -366,59 +386,60 @@ public class MakeChange {
 		// The StringBuilder appends the strings to the same object
 		// and then converts the StringBuilder to a string
 
+		// I noticed that in some cases, the StringBuilder took longer to complete
+
 		StringBuilder sb = new StringBuilder();
 
 		if (twentiesNeeded > 0) {
-			sb.append(twentiesNeeded + " Twenty dollar bill" + (twentiesNeeded > 1 ? "s" : ""));
+			sb.append(twentiesNeeded + " twenty dollar bill" + (twentiesNeeded > 1 ? "s" : ""));
 		}
 		if (tensNeeded > 0) {
 			if (sb.length() > 0) {
 				sb.append(", ");
 			}
-			sb.append(tensNeeded + " Ten dollar bill" + (tensNeeded > 1 ? "s" : ""));
+			sb.append(tensNeeded + " ten dollar bill" + (tensNeeded > 1 ? "s" : ""));
 		}
 		if (fivesNeeded > 0) {
 			if (sb.length() > 0) {
 				sb.append(", ");
 			}
-			sb.append(fivesNeeded + " Five dollar bill" + (fivesNeeded > 1 ? "s" : ""));
+			sb.append(fivesNeeded + " five dollar bill" + (fivesNeeded > 1 ? "s" : ""));
 		}
 		if (onesNeeded > 0) {
 			if (sb.length() > 0) {
 				sb.append(", ");
 			}
-			sb.append(onesNeeded + " One dollar bill" + (onesNeeded > 1 ? "s" : ""));
+			sb.append(onesNeeded + " one dollar bill" + (onesNeeded > 1 ? "s" : ""));
 		}
 		if (quartersNeeded > 0) {
 			if (sb.length() > 0) {
 				sb.append(", ");
 			}
-			sb.append(quartersNeeded + " Quarter" + (quartersNeeded > 1 ? "s" : ""));
+			sb.append(quartersNeeded + " quarter" + (quartersNeeded > 1 ? "s" : ""));
 		}
 		if (dimesNeeded > 0) {
 			if (sb.length() > 0) {
 				sb.append(", ");
 			}
-			sb.append(dimesNeeded + " Dime" + (dimesNeeded > 1 ? "s" : ""));
+			sb.append(dimesNeeded + " dime" + (dimesNeeded > 1 ? "s" : ""));
 		}
 		if (nickelsNeeded > 0) {
 			if (sb.length() > 0) {
 				sb.append(", ");
 			}
-			sb.append(nickelsNeeded + " Nickel" + (nickelsNeeded > 1 ? "s" : ""));
+			sb.append(nickelsNeeded + " nickel" + (nickelsNeeded > 1 ? "s" : ""));
 		}
 		if (penniesNeeded > 0) {
 			if (sb.length() > 0) {
 				sb.append(", ");
 			}
-			sb.append(penniesNeeded + " " + (penniesNeeded > 1 ? "Pennies" : "Penny"));
+			sb.append(penniesNeeded + " " + (penniesNeeded > 1 ? "pennies" : "penny"));
 		}
 		if (sb.length() > 0) {
 			sb.append(".");
 		}
 
-		return sb.toString(); // Using the result of the StringBuilder
-
+		System.out.println(sb.toString());
 	}
 
 }
