@@ -17,9 +17,18 @@ public class MakeChange {
 	/*
 	 * Make Change (Cash Register) Overview In the cash register we will calculate
 	 * the amount of change returned to a customer based on the purchase price and
-	 * the amount tendered. We will also notify the attendant how many of each type
-	 * of currency ($20 ,$10 ,$5 ,$1, .25c, .10c, .05c, .01c) is needed to make the
-	 * change for the customer.
+	 * the amount tendered.
+	 * 
+	 * 
+	 * 
+	 * // MORE TO DO HERE, RE-READ AND FINISH NICELY!
+	 * 
+	 * // MORE TO DO HERE, RE-READ AND FINISH NICELY!
+	 * 
+	 * 
+	 * We will also notify the attendant how many of each type of currency ($20 ,$10
+	 * ,$5 ,$1, .25c, .10c, .05c, .01c) is needed to make the change for the
+	 * customer.
 	 * 
 	 * Change will be provided using a combination of the largest bill and coin
 	 * denominations as possible.
@@ -77,7 +86,7 @@ public class MakeChange {
 
 		printHeader();
 
-		System.out.println(makeChange(.32));
+		System.out.println(makeChange(3.96));
 	}
 
 	/*
