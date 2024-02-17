@@ -91,9 +91,15 @@ public class Change {
 	// toString method
 	@Override
 	public String toString() {
-		return "Change [twentiesNeeded=" + twentiesNeeded + ", tensNeeded=" + tensNeeded + ", fivesNeeded="
-				+ fivesNeeded + ", onesNeeded=" + onesNeeded + ", quartersNeeded=" + quartersNeeded + ", dimesNeeded="
-				+ dimesNeeded + ", nickelsNeeded=" + nickelsNeeded + ", penniesNeeded=" + penniesNeeded + "]";
+		return "\nChange \n[twentiesNeeded=" + twentiesNeeded + ", \ntensNeeded=" + tensNeeded + ", \nfivesNeeded="
+				+ fivesNeeded + ", \nonesNeeded=" + onesNeeded + ", \nquartersNeeded=" + quartersNeeded
+				+ ", \ndimesNeeded=" + dimesNeeded + ", \nnickelsNeeded=" + nickelsNeeded + ", \npenniesNeeded="
+				+ penniesNeeded + "]";
+	}
+
+	public Double getTotal() {
+		return (double) (twentiesNeeded * 20 + tensNeeded * 10 + fivesNeeded * 5 + onesNeeded + quartersNeeded * 0.25
+				+ dimesNeeded * 0.10 + nickelsNeeded * 0.05 + penniesNeeded * 0.01);
 	}
 
 }

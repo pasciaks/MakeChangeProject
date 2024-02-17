@@ -1,8 +1,20 @@
 package com.pasciak.utils;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import com.pasciak.models.Change;
 
 public class ChangeFunctions {
+
+	public static double round(double value, int places) {
+		if (places < 0)
+			throw new IllegalArgumentException();
+
+		BigDecimal bd = BigDecimal.valueOf(value);
+		bd = bd.setScale(places, RoundingMode.HALF_UP);
+		return bd.doubleValue();
+	}
 
 	/*
 	 * This method is used to display the change needed as a string using the
@@ -83,11 +95,46 @@ public class ChangeFunctions {
 
 	public static void main(String[] args) {
 
+		// StringBuilder implementation using parameters
+
 		String exampleResult = displayChangeStringBuilder(1, 1, 1, 1, 1, 1, 1, 1);
 		System.out.println(exampleResult);
 
+		// StringBuilder implementation using object properties
+
 		Change change = new Change(1, 1, 1, 1, 1, 1, 1, 1);
 		System.out.println(displayChangeFromObjectProperties(change));
+
+		String toStringResult = change.toString();
+		System.out.println(toStringResult);
+
+		for (int i = 1; i <= 10; i++) {
+
+			long randomTwenties = (long) (Math.random() * 2);
+			long randomTens = (long) (Math.random() * 2);
+			long randomFives = (long) (Math.random() * 2);
+			long randomOnes = (long) (Math.random() * 2);
+			long randomQuarters = (long) (Math.random() * 2);
+			long randomDimes = (long) (Math.random() * 2);
+			long randomNickels = (long) (Math.random() * 2);
+			long randomPennies = (long) (Math.random() * 2);
+
+			System.out.println("\n".repeat(2));
+
+			change = new Change(randomTwenties, randomTens, randomFives, randomOnes, randomQuarters, randomDimes,
+					randomNickels, randomPennies);
+
+			System.out.println(displayChangeFromObjectProperties(change));
+
+			toStringResult = change.toString();
+			System.out.println(toStringResult);
+
+			double getValueResult = change.getTotal();
+			System.out.printf("%30s$%.2f", "", round(getValueResult, 2));
+
+			System.out.println("\n".repeat(2));
+
+		}
 
 	}
 
