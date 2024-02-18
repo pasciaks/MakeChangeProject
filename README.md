@@ -26,25 +26,29 @@
 
 #### Important notes about all the code in this Repository 
 
-	- Beyond the Homework - Additional files to help plan OOP learning ahead.
-	- I've created a separate package folder structure for possible future improvements
-		- Using previous knowledge and google searches, I'm slowly considering OOP fundamentals and how this application can be adapted for implementation along those lines.
-		- For this homework, MakeChange.java is the only relevant file.
-		- The concept of a CashRegister that accepts a future List<Purchases> and generates Change might be more towards where this project will head.
-		- I can't do it all right now, but I did want to start stubbing away code and thoughts for what I believe will be the eventual completion of an assignment like this.
-	- In addition to a possible models package, a utilities package is also created.
-		- Perhaps these utilities and models packages are ultimately how a CashRegister application will be fully structured into an OOP application.
-		- Some of the abstraction is not yet complete, and will be farmed into appropriate classes later.
-		- I envision a class called CashRegister, and Purchase, as well as a revised version of Change.
-		- The revised version of Change shall incorporate some of the ChangeFunctions as methods of itself, but much will need to be learned before all this is accomplished satisfactorily.
-	- Creating fully, well thought out OOP applications is as much of an art as it is a science and skill
-		- UML and DB Diagram lessons will be helpful to learn the official concepts and best practices
-		- OMG I'm actually loving this and glad to be a part of this class.
-		- I'm confident the material here is top notch and will be great for my future DIGITAL NOMAD goals.
+- Beyond the Homework - Additional files to help plan OOP learning ahead.
+- I've created a separate package folder structure for possible future improvements
+- Using previous knowledge and google searches, I'm slowly considering OOP fundamentals and how this application can be adapted for implementation along those lines.
+- For this homework, MakeChange.java is the only relevant file.
+- The concept of a CashRegister that accepts a future List<Purchases> and generates Change might be more towards where this project will head.
+- I can't do it all right now, but I did want to start stubbing away code and thoughts for what I believe will be the eventual completion of an assignment like this.
+- In addition to a possible models package, a utilities package is also created.
+- Perhaps these utilities and models packages are ultimately how a CashRegister application will be fully structured into an OOP application.
+- Some of the abstraction is not yet complete, and will be farmed into appropriate classes later.
+- I envision a class called CashRegister, and Purchase, as well as a revised version of Change.
+- The revised version of Change shall incorporate some of the ChangeFunctions as methods of itself, but much will need to be learned before all this is accomplished satisfactorily.
+- Creating fully, well thought out OOP applications is as much of an art as it is a science and skill
+- UML and DB Diagram lessons will be helpful to learn the official concepts and best practices
+- OMG I'm actually loving this and glad to be a part of this class.
+- I'm confident the material here is top notch and will be great for my future DIGITAL NOMAD goals.
+
 #### How to run this program : This is a .java source code, command line project.  
-	-You could open the project in an IDE and execute the main method using the IDE tools.
-	-You can compile the project (.java) file on the command line, and then execute the compiled code.
-		--The compilation and execution in the command line is subject to the proper working directory and installed JAVA Compiler and specific platform.
+
+You could open the project in an IDE and execute the main method using the IDE tools.
+
+You can compile the project (.java) file on the command line, and then execute the compiled code.
+
+The compilation and execution in the command line is subject to the proper working directory and installed JAVA Compiler and specific platform.
 
 #### Compile the .java source file
 
