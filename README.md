@@ -37,7 +37,10 @@
 		- Some of the abstraction is not yet complete, and will be farmed into appropriate classes later.
 		- I envision a class called CashRegister, and Purchase, as well as a revised version of Change.
 		- The revised version of Change shall incorporate some of the ChangeFunctions as methods of itself, but much will need to be learned before all this is accomplished satisfactorily.
-	
+	- Creating fully, well thought out OOP applications is as much of an art as it is a science and skill
+		- UML and DB Diagram lessons will be helpful to learn the official concepts and best practices
+		- OMG I'm actually loving this and glad to be a part of this class.
+		- I'm confident the material here is top notch and will be great for my future DIGITAL NOMAD goals.
 #### How to run this program : This is a .java source code, command line project.  
 	-You could open the project in an IDE and execute the main method using the IDE tools.
 	-You can compile the project (.java) file on the command line, and then execute the compiled code.
