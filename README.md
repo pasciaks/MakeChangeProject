@@ -22,7 +22,7 @@
 	- Format code, keep it separated (Indented)
 	- Use of BigDecimal, and String builder
 	
-	#### Over Engineered - K.I.S.S.
+	- Over Engineered - K.I.S.S.
 	
 	
 -
